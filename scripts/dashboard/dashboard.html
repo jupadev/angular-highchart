@@ -1,0 +1,52 @@
+<div class="inner-section">
+    <div class="loading text-center margin-top-15" ng-if="isLoading">
+        <h3>
+            <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" 
+            ng-show="isLoading"></span>Loading data...
+        </h3>
+    </div>
+    <div>
+        <h3 class="section-title">Employee list</h3>
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+            <div class="panel">
+                <table ng-table="tableParams" class="table margin-top-15">
+                    <tr ng-repeat="employee in $data">
+                        <td data-title="'Name'" sortable="'name'">
+                            {{employee.name}}
+                        </td>
+                        <td data-title="'Age'" sortable="'age'">
+                            {{employee.age}}
+                        </td>
+                        <td data-title="'Start Date'" sortable="'startDate'" >
+                            {{employee.startDate | date:'yyyy-MM-dd'}}
+                        </td>
+                        <td data-title="'Office'" sortable="'office'">
+                            {{employee.office}}
+                        </td>
+                        <td data-title="'Income'" sortable="'income'">
+                            {{incomePrefix + employee.income}}
+                        </td>
+                    </tr>
+                </table>
+                </div>
+            </div>
+        </div>
+         <h3 class="section-title">Income by employee</h3>
+         <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                <div class="panel">
+                <highchart id="incomesByEmployee" config="chartConfig" class="span10"></highchart>
+            </div>
+        </div>
+        </div>
+        <h3 class="section-title">Income by office</h3>
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                <div class="panel">
+                    <div id="incomesByOffice" config="pieChartConfig" class="span10"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

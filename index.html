@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="demoApp">
+<head>
+<title>Demo App</title>
+<link href="./styles/main.css" rel="stylesheet" />
+<link href="./bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="./bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+<link href="./bower_components/ng-table/dist/ng-table.min.css" rel="stylesheet" />
+<link href="./bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script src="./bower_components/lodash/lodash.min.js"></script>
+<script src="./bower_components/angular/angular.min.js"></script>
+<script src="./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="./bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js"></script>
+<script src="./bower_components/angular-route/angular-route.min.js"></script>
+<script src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="./bower_components/angular-resource/angular-resource.min.js"></script>
+<script src="./bower_components/highcharts/highcharts.js"></script>
+<script src="./bower_components/highcharts-ng/dist/highcharts-ng.min.js"></script>
+<script src="./bower_components/ng-table/dist/ng-table.min.js"></script>
+<script src="./app.js"></script>
+<script src="./app-controller.js"></script>
+<script src="./config.js"></script>
+<script src="./scripts/services/authentication-service.js"></script>
+<script src="./scripts/services/session-service.js"></script>
+<script src="./scripts/services/storageService.js"></script>
+<script src="./scripts/services/employee-service.js"></script>
+<script src="./scripts/login/login-controller.js"></script>
+<script src="./scripts/dashboard/dashboard-controller.js"></script>
+<script src="./scripts/mockup/mockup-controller.js"></script>
+<script src="./scripts/directives/ng-enter/ng-enter.js"></script>
+</head>
+<body ng-controller="appController">
+<div class="navbar-fixed navbar navbar-inverse">
+  <div class="row">
+  <div class="col-xs-8 col-sm-9">
+    <a class="navbar-brand" href="http://www.myapptest.com/">{{::appName}}</a>
+  </div>
+  <div class="col-xs-4 col-sm-3 log-out">
+    <b>
+      <a class="" ng-click="logout()" ng-if="currentUser">
+        Log out
+        <i class="glyphicon glyphicon-log-out">
+        </i>
+      </a>
+    </b>
+  </div>
+  </div>
+
+</div>
+<section ui-view></section>
+</body>
+</html>

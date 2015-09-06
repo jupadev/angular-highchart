@@ -1,0 +1,94 @@
+<div class="inner-section">
+    <div class="dashboard-bar row">
+        <div class="col-xs-6 col-sm-9">
+            <h4 class="section-title" 
+            ng-show="!editMode">{{title}}
+                <a href="" 
+                title="Change dashboard title" 
+                ng-click="toggleEditMode()" 
+                ng-show="!editMode">
+                <i class="glyphicon glyphicon-pencil"></i>
+                </a>
+            </h4>
+            <input type="text" class="form-control" 
+            ng-enter="toggleEditMode()"
+            placeholder="Enter a chart name" 
+            ng-show="editMode"
+            maxlength="50" 
+            id="query" name="query" ng-model="title">
+        </div>
+        <div class="col-xs-2 col-sm-1 text-right dashboard-options">
+            <a href="" title="Save your dashboard">
+                <i class="glyphicon glyphicon-floppy-disk"></i>
+                Save
+            </a>
+        </div>
+        <div class="col-xs-2 col-sm-2 dashboard-options">
+            <a href="" 
+            title="Add charts in your dashboard" 
+            ng-click="toggleChartMenu()">
+                <i class="glyphicon glyphicon-plus-sign"></i>
+                Add charts
+            </a>
+        </div>
+        
+    </div>
+    <div id="addChartMenu" class="menu-chart" ng-show="showChartMenu">
+        <div class="arrow-up arrow-menu-chart-panel"></div>
+        <div class="input-group">
+            <input type="text" class="form-control" 
+            placeholder="Enter a chart name" 
+            id="query" name="query" value=""
+            ng-keypress="searchChart()"
+            ng-disabled="charts.length === renderedCharts.length"
+            ng-model="chartQuery">
+            <div class="input-group-btn" >
+                <button 
+                class="btn btn-default" 
+                ng-disabled="charts.length === renderedCharts.length"
+                ng-click="searchChart()">
+                <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </div>
+        </div>
+        <div id="chartList" class="menu-chart-panel">
+            <ul 
+            class="menu-chart-list"
+            dnd-list="list"
+            dnd-dragover="dragoverCallback(event, index, external, type)"
+            dnd-drop="dropCallback(event, index, item, external, type, 'chart')">
+                <li ng-repeat="item in chartsList"
+                    dnd-draggable="item"
+                    dnd-type="'chart'"
+                    dnd-moved="chartsList.splice($index, 1)"
+                    dnd-effect-allowed="move"
+                    dnd-selected="models.selected = item"
+                    ng-class="{'selected': models.selected === item}"
+                    title="Drop a chart in available zone">
+                    <a>
+                        <i class="fa" ng-class="{
+                          'fa-line-chart ' : item.type === 'line',
+                          'fa-pie-chart ' : item.type === 'pie',
+                          'fa-bar-chart ' : item.type === 'bar'
+                        }"></i> {{item.name}}
+                    </a>
+                </li>
+            </ul>
+            <span class="chart-list-lengend" ng-show="charts.length === 0">
+                No results found
+            </span>
+            <span class="chart-list-lengend" ng-show="charts.length === renderedCharts.length">
+                No more graphics available. <a>Do you want create a new chart?</a>
+            </span>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="drag-zone menu-chart-list" dnd-list="list "
+        dnd-drop="dropCallback(event, index, item, external, type, 'chart')"
+        dnd-allowed-types="['chart']"
+        dnd-external-sources="true">
+        <i class="glyphicon glyphicon-import"></i> Drop a chart here</div>
+    </div>
+    <div id="chartContainer"></div>
+</div>

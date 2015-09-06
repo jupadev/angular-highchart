@@ -1,0 +1,64 @@
+<div class="inner-section container">
+  <div id="loginpanel" class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 margin-top-30">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+          <div class="panel-title">Sign In</div>
+      </div>
+      <div class="panel-body">
+        <form name="loginForm" ng-submit="onLogin(credentials)" class="form" novalidate>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="glyphicon glyphicon-user"></i>
+              </span> 
+              <input type="text" 
+              name="username" 
+              id="username"
+              class="form-control" 
+              placeholder="Enter your username"
+              ng-model="credentials.username.value"
+              required ng-minlength="1" ng-maxlength="100">
+            </div>
+            <span class="alert-color small padding-left-15" ng-if="credentials.username.error">
+              <i class="glyphicon glyphicon-exclamation-sign"></i>The username is required.
+            </span>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <i class="glyphicon glyphicon-lock"></i>
+              </span> 
+              <input type="password" 
+              name="password" 
+              id="password" 
+              class="form-control" 
+              placeholder="Enter your password"
+              ng-model="credentials.password.value"
+              required ng-minlength="1" ng-maxlength="100">
+            </div>
+            <span class="alert-color small padding-left-15" ng-if="credentials.password.error">
+              <i class="glyphicon glyphicon-exclamation-sign"></i>The password is required.
+            </span>
+          </div>
+          <div class="form-group ">
+            
+            <span class="alert-color small padding-left-15" ng-if="!credentials.valid">
+              <i class="glyphicon glyphicon-exclamation-sign"></i>The username or password are incorrect.
+            </span>
+            <span class="alert-color small padding-left-15" ng-if="credentials.unknownError">
+              <i class="glyphicon glyphicon-exclamation-sign"></i>An error occurred while trying to login.
+            </span>
+          </div>
+          
+          <button type="submit" 
+            ng-disabled="{{isLoading}}"
+            class="btn btn-md btn-primary btn-block has-spinner">
+            <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" 
+            ng-show="isLoading"></span>
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
